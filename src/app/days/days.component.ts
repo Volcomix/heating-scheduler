@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import * as moment from 'moment';
 
 @Component({
   selector: 'hs-days',
@@ -9,8 +10,10 @@ export class DaysComponent {
   days: Date[] = [];
 
   constructor() {
-    for (let i = 1; i <= 7; i++) {
-      this.days.push(new Date(2018, 0, i));
+    const day = moment().startOf('week');
+    for (let i = 0; i < 7; i++) {
+      this.days.push(day.toDate());
+      day.add(1, 'day');
     }
   }
 }
