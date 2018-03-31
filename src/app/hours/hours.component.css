@@ -3,6 +3,7 @@
   display: flex;
 }
 
-span {
+span:not(:last-child) {
   flex: 1;
+  margin-right: 8px;
 }

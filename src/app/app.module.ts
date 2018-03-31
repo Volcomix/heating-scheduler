@@ -1,24 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
+import { NgModule, LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
 
 import { AppComponent } from './app.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { HoursComponent } from './hours/hours.component';
 import { DaysComponent } from './days/days.component';
 
+registerLocaleData(localeFr);
 
 @NgModule({
   declarations: [
     AppComponent,
     ScheduleComponent,
     HoursComponent,
-    DaysComponent
+    DaysComponent,
   ],
-  imports: [
-    BrowserModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  imports: [BrowserModule],
+  providers: [{ provide: LOCALE_ID, useValue: 'fr' }],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

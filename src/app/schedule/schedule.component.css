@@ -2,3 +2,11 @@
   flex: 1;
   display: flex;
 }
+
+.header {
+  height: 24px;
+}
+
+.side {
+  margin-top: 24px;
+}
