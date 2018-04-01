@@ -64,35 +64,53 @@ export class ZoneComponent {
       this.renderer.listen(
         'document',
         'selectstart',
-        this.disableSelect.bind(this)
+        this.disableDefault.bind(this)
+      ),
+      this.renderer.listen(
+        'document',
+        'dragstart',
+        this.disableDefault.bind(this)
       ),
       this.renderer.listen('document', 'mouseup', this.endResizing.bind(this)),
     ];
     document.body.style.cursor = 'ew-resize';
   }
 
-  resize(event: MouseEvent) {
+  resize({ clientX }: MouseEvent) {
     const parentElement: HTMLElement = this.elementRef.nativeElement
       .parentElement;
     const { left, width } = parentElement.getBoundingClientRect();
-    let minutes = minutesInDay * (event.clientX - left) / width;
+    let minutes = minutesInDay * (clientX - left) / width;
     minutes = Math.round(minutes / 15) * 15;
-    const startOfDay = moment(this.zone.startDate).startOf('day');
+    const startOfDay = moment(this.zone.startDate)
+      .startOf('day')
+      .add(1, 'hour');
     const endOfDay = moment(this.zone.startDate)
       .endOf('day')
       .subtract(1, 'hour');
-    const date = moment(startOfDay).add(minutes, 'minutes');
-    if (date.isBefore(startOfDay)) {
-      this.zone.startDate = startOfDay.toDate();
-    } else if (date.diff(this.zone.endDate, 'hours') > -1) {
+    const date = moment(startOfDay)
+      .add(minutes, 'minutes')
+      .subtract(1, 'hour');
+    if (
+      moment(this.zone.previousZone.startDate).day() ===
+        moment(this.zone.previousZone.endDate).day() &&
+      date.diff(this.zone.previousZone.startDate, 'hours') < 1
+    ) {
+      this.zone.startDate = moment(this.zone.previousZone.startDate)
+        .add(1, 'hour')
+        .toDate();
+    } else if (!this.isLast && date.diff(this.zone.endDate, 'hours') > -1) {
       this.zone.startDate = moment(this.zone.endDate)
         .subtract(1, 'hour')
         .toDate();
+    } else if (date.isBefore(startOfDay)) {
+      this.zone.startDate = startOfDay.toDate();
     } else if (date.isAfter(endOfDay)) {
       this.zone.startDate = endOfDay.toDate();
     } else {
       this.zone.startDate = date.toDate();
     }
+    this.zone.previousZone.endDate = this.zone.startDate;
   }
 
   endResizing() {
@@ -100,7 +118,7 @@ export class ZoneComponent {
     document.body.style.cursor = 'auto';
   }
 
-  disableSelect(event: MouseEvent) {
+  disableDefault(event: MouseEvent) {
     event.preventDefault();
   }
 }

@@ -5,4 +5,5 @@ export interface Zone {
   endDate?: Date;
   temperatureName: string;
   temperature?: Temperature;
+  previousZone?: Zone;
 }

@@ -31,11 +31,15 @@ export class WeekZonesComponent {
           zone.endDate = dayZones[zoneIdx + 1].startDate;
         }
         zone.temperature = temperatures[zone.temperatureName];
+        if (zoneIdx > 0) {
+          zone.previousZone = dayZones[zoneIdx - 1];
+        }
       });
     });
     schedule.weekZones.forEach((dayZones, dayIdx) => {
       const previousDayZones = schedule.weekZones[(dayIdx + 6) % 7];
       const previousZone = previousDayZones[previousDayZones.length - 1];
+      dayZones[0].previousZone = previousZone;
       dayZones.unshift(previousZone);
     });
     this.weekZones = schedule.weekZones;
