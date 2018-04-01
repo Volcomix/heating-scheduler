@@ -1,0 +1,5 @@
+<div *ngFor="let zone of zones">
+  <span>{{zone.date | date:'shortTime'}}</span>
+  <span>{{zone.temperatureName}}</span>
+  <span>{{temperatures[zone.temperatureName].value}}°C</span>
+</div>

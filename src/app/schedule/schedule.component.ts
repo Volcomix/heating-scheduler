@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { TemperaturesService } from '../temperatures.service';
-import { DaysService } from '../days.service';
-import { Temperature } from '../temperature.model';
+import { ZonesService } from '../zones.service';
+import { Temperatures } from '../temperatures.model';
 import { Zone } from '../zone.model';
 
 @Component({
@@ -12,16 +12,16 @@ import { Zone } from '../zone.model';
   styleUrls: ['./schedule.component.css'],
 })
 export class ScheduleComponent implements OnInit {
-  temperatures$: Observable<Temperature[]>;
-  days$: Observable<Zone[][]>;
+  temperatures$: Observable<Temperatures>;
+  weekZones$: Observable<Zone[][]>;
 
   constructor(
     private temperaturesService: TemperaturesService,
-    private daysService: DaysService
+    private zonesService: ZonesService
   ) {}
 
   ngOnInit() {
     this.temperatures$ = this.temperaturesService.getTemperatures();
-    this.days$ = this.daysService.getDays();
+    this.weekZones$ = this.zonesService.getZones();
   }
 }

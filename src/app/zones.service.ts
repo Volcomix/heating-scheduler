@@ -4,12 +4,12 @@ import { HttpClient } from '@angular/common/http';
 import { Zone } from './zone.model';
 
 @Injectable()
-export class DaysService {
-  private daysUrl = 'api/days';
+export class ZonesService {
+  private zonesUrl = 'api/zones';
 
   constructor(private http: HttpClient) {}
 
-  getDays() {
-    return this.http.get<Zone[][]>(this.daysUrl);
+  getZones() {
+    return this.http.get<Zone[][]>(this.zonesUrl);
   }
 }

@@ -8,12 +8,13 @@ import * as moment from 'moment';
 import localeFr from '@angular/common/locales/fr';
 
 import { InMemoryScheduleService } from './in-memory-schedule.service';
-import { DaysService } from './days.service';
 import { TemperaturesService } from './temperatures.service';
+import { ZonesService } from './zones.service';
 import { AppComponent } from './app.component';
 import { ScheduleComponent } from './schedule/schedule.component';
-import { HoursComponent } from './hours/hours.component';
 import { DaysComponent } from './days/days.component';
+import { HoursComponent } from './hours/hours.component';
+import { DayZonesComponent } from './day-zones/day-zones.component';
 
 moment.locale('fr');
 registerLocaleData(localeFr);
@@ -22,8 +23,9 @@ registerLocaleData(localeFr);
   declarations: [
     AppComponent,
     ScheduleComponent,
-    HoursComponent,
     DaysComponent,
+    HoursComponent,
+    DayZonesComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,8 +34,8 @@ registerLocaleData(localeFr);
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr' },
-    DaysService,
     TemperaturesService,
+    ZonesService,
   ],
   bootstrap: [AppComponent],
 })
