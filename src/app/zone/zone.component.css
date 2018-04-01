@@ -4,6 +4,10 @@
   bottom: 0;
   border-radius: 24px;
   margin: 0 4px;
+  display: flex;
+  align-items: center;
+  padding-left: 6px;
+  color: white;
 }
 
 :host.first {
