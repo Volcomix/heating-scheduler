@@ -1,6 +1,1 @@
-<div *ngFor="let zone of zones">
-  <span>{{zone.startDate | date:'shortTime'}}</span>
-  <span>{{zone.endDate | date:'shortTime'}}</span>
-  <span>{{zone.temperatureName}}</span>
-  <span>{{zone.temperature.value}}°C</span>
-</div>
+<hs-zone *ngFor="let zone of zones; first as isFirst; last as isLast" [zone]="zone" [isFirst]="isFirst" [isLast]="isLast"></hs-zone>

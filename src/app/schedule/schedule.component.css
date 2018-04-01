@@ -1,11 +1,11 @@
 :host {
   flex: 1;
   display: flex;
+  min-height: 360px;
 }
 
 .side {
   margin-top: 24px;
-  min-height: 160px;
 }
 
 .header {
