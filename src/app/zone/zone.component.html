@@ -1,4 +1,4 @@
 <ng-container *ngIf="!isFirst">
-  <span class="handle"></span>
+  <span class="handle" (mousedown)="startResizing()"></span>
   {{zone.temperature.value}}°C
 </ng-container>
