@@ -1,9 +1,14 @@
 :host {
-  flex: 1;
+  position: relative;
   display: flex;
 }
 
 span:not(:last-child) {
   flex: 1;
   margin-right: 8px;
+}
+
+span:last-child {
+  position: absolute;
+  left: 100%;
 }

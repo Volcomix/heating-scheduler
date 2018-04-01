@@ -1,2 +1,12 @@
 <hs-days class="side"></hs-days>
-<hs-hours class="header"></hs-hours>
+<div class="center">
+  <hs-hours class="header"></hs-hours>
+  <div class="days">
+    <div *ngFor="let day of (days$ | async)">
+      <div *ngFor="let zone of day">
+        <span>{{zone.date | date:'shortTime'}}</span>
+        <span>{{zone.temperatureName}}</span>
+      </div>
+    </div>
+  </div>
+</div>
