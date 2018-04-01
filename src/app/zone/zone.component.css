@@ -22,7 +22,7 @@
   margin-right: 0;
 }
 
-span {
+.handle {
   position: absolute;
   top: 0;
   bottom: 0;
