@@ -14,7 +14,9 @@ import { AppComponent } from './app.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { DaysComponent } from './days/days.component';
 import { HoursComponent } from './hours/hours.component';
+import { WeekZonesComponent } from './week-zones/week-zones.component';
 import { DayZonesComponent } from './day-zones/day-zones.component';
+import { ZoneComponent } from './zone/zone.component';
 
 moment.locale('fr');
 registerLocaleData(localeFr);
@@ -25,7 +27,9 @@ registerLocaleData(localeFr);
     ScheduleComponent,
     DaysComponent,
     HoursComponent,
+    WeekZonesComponent,
     DayZonesComponent,
+    ZoneComponent,
   ],
   imports: [
     BrowserModule,

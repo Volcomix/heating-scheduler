@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { combineLatest, map } from 'rxjs/operators';
 
 import { TemperaturesService } from '../temperatures.service';
 import { ZonesService } from '../zones.service';
-import { Temperatures } from '../temperatures.model';
-import { Zone } from '../zone.model';
+import { Schedule } from '../schedule.model';
 
 @Component({
   selector: 'hs-schedule',
@@ -12,8 +12,7 @@ import { Zone } from '../zone.model';
   styleUrls: ['./schedule.component.css'],
 })
 export class ScheduleComponent implements OnInit {
-  temperatures$: Observable<Temperatures>;
-  weekZones$: Observable<Zone[][]>;
+  schedule$: Observable<Schedule>;
 
   constructor(
     private temperaturesService: TemperaturesService,
@@ -21,7 +20,11 @@ export class ScheduleComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.temperatures$ = this.temperaturesService.getTemperatures();
-    this.weekZones$ = this.zonesService.getZones();
+    this.schedule$ = this.temperaturesService
+      .getTemperatures()
+      .pipe(
+        combineLatest(this.zonesService.getZones()),
+        map(([temperatures, weekZones]) => ({ temperatures, weekZones }))
+      );
   }
 }

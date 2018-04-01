@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 
-import { Temperatures } from '../temperatures.model';
 import { Zone } from '../zone.model';
 
 @Component({
@@ -9,6 +8,5 @@ import { Zone } from '../zone.model';
   styleUrls: ['./day-zones.component.css'],
 })
 export class DayZonesComponent {
-  @Input() temperatures: Temperatures;
   @Input() zones: Zone[];
 }

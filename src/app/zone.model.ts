@@ -1,4 +1,8 @@
+import { Temperature } from './temperature.model';
+
 export interface Zone {
-  date: Date;
+  startDate: Date;
+  endDate?: Date;
   temperatureName: string;
+  temperature?: Temperature;
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Temperatures } from './temperatures.model';
+import { Temperature } from './temperature.model';
 
 @Injectable()
 export class TemperaturesService {
@@ -10,6 +10,6 @@ export class TemperaturesService {
   constructor(private http: HttpClient) {}
 
   getTemperatures() {
-    return this.http.get<Temperatures>(this.temperaturesUrl);
+    return this.http.get<Temperature[]>(this.temperaturesUrl);
   }
 }

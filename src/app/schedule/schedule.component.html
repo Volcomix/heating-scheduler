@@ -1,7 +1,5 @@
 <hs-days class="side"></hs-days>
-<div class="center">
+<div>
   <hs-hours class="header"></hs-hours>
-  <ng-container *ngIf="temperatures$ | async as temperatures">
-    <hs-day-zones *ngFor="let dayZones of weekZones$ | async" [temperatures]="temperatures" [zones]="dayZones"></hs-day-zones>
-  </ng-container>
+  <hs-week-zones *ngIf="schedule$ | async as schedule" [schedule]="schedule"></hs-week-zones>
 </div>
