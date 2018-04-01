@@ -1,4 +1,7 @@
-<ng-container *ngIf="!isFirst">
+<ng-container *ngIf="!isFirst; else firefoxFix">
   <span class="handle" (mousedown)="startResizing()"></span>
   {{zone.temperature.value}}°C
 </ng-container>
+
+<!-- Fix for Firefox glitch -->
+<ng-template #firefoxFix>&nbsp;</ng-template>
