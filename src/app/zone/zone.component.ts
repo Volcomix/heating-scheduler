@@ -90,7 +90,7 @@ export class ZoneComponent {
       .add(1, 'hour');
     const endOfDay = moment(this.zone.startDate)
       .endOf('day')
-      .subtract(1, 'hour');
+      .subtract(59, 'minutes');
     const date = moment(startOfDay)
       .add(minutes, 'minutes')
       .subtract(1, 'hour');
