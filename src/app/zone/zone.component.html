@@ -1,7 +1,8 @@
 <ng-container *ngIf="!isFirst; else firefoxFix">
   <span class="handle" (mousedown)="startResizing()"></span>
+  <span *ngIf="isMoving" class="start-date">{{zone.startDate | date:'shortTime'}}</span>
   {{zone.temperature.value}}°C
 </ng-container>
 
-<!-- Fix for Firefox glitch -->
+<!-- Fix Firefox glitch when resizing 2nd zone of each day -->
 <ng-template #firefoxFix>&nbsp;</ng-template>

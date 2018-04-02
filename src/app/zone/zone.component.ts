@@ -27,6 +27,8 @@ export class ZoneComponent {
   @Input()
   isLast: boolean;
 
+  isMoving = false;
+
   private listeners: Array<() => void>;
 
   constructor(private renderer: Renderer2, private elementRef: ElementRef) {}
@@ -74,6 +76,7 @@ export class ZoneComponent {
       this.renderer.listen('document', 'mouseup', this.endResizing.bind(this)),
     ];
     document.body.style.cursor = 'ew-resize';
+    this.isMoving = true;
   }
 
   resize({ clientX }: MouseEvent) {
@@ -116,6 +119,7 @@ export class ZoneComponent {
   endResizing() {
     this.listeners.forEach(listener => listener());
     document.body.style.cursor = 'auto';
+    this.isMoving = false;
   }
 
   disableDefault(event: MouseEvent) {

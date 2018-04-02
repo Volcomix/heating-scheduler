@@ -30,3 +30,19 @@
   width: 8px;
   cursor: ew-resize;
 }
+
+.start-date {
+  position: absolute;
+  top: 0;
+  left: -4px;
+  margin-top: -4px;
+  transform: translate(-50%, -100%);
+  height: 24px;
+  color: black;
+  background-color: white;
+  border: 4px solid lightgrey;
+  border-radius: 17px;
+  padding: 2px 12px 0 12px;
+  display: flex;
+  align-items: center;
+}
