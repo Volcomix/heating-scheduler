@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { combineLatest, map } from 'rxjs/operators';
 
 import { TemperaturesService } from '../temperatures.service';
@@ -20,11 +20,9 @@ export class ScheduleComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.schedule$ = this.temperaturesService
-      .getTemperatures()
-      .pipe(
-        combineLatest(this.zonesService.getZones()),
-        map(([temperatures, weekZones]) => ({ temperatures, weekZones }))
-      );
+    this.schedule$ = this.temperaturesService.getTemperatures().pipe(
+      combineLatest(this.zonesService.getZones()),
+      map(([temperatures, weekZones]) => ({ temperatures, weekZones }))
+    );
   }
 }
